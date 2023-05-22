@@ -82,16 +82,19 @@ class Dataloader:
                         values.append(int_value)
                     self.audio_data[key] = values
             
-        self.n_data = len(self.text_data)
-        print(self.n_data)
-        print(self.text_data[0:2])
-        print(self.audio_data["dia0_utt0"][0][0])
+        
+
         
         self.data = {}
         self.text_only = {}
         #This is probably faster then using a ordered dict
         self.indexed_keys =[]
         self.pair_audio_and_text()
+        self.n_data = len(self.data)
+        
+        print(self.n_data)
+        print(self.text_data[0:2])
+        print(self.audio_data["dia0_utt0"][0][0])
         #self.pair_audio_text_and_prepare_data()
         
     #Obsolete
