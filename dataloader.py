@@ -89,6 +89,8 @@ class Dataloader:
         
         self.data = {}
         self.text_only = {}
+        #This is probably faster then using a ordered dict
+        self.indexed_keys =[]
         self.pair_audio_and_text()
         #self.pair_audio_text_and_prepare_data()
         
@@ -123,11 +125,13 @@ class Dataloader:
             
     def pair_audio_and_text(self):
         self.prepare_text_data()
+        #This key is the dia(nro) utt(nro) string
         for key,value in self.audio_data.items():
             label = self.text_only[key][0]
             text = self.text_only[key][1]
             audio_features = value
-            self.data[key] = [text, audio_features, label]
+            self.indexed_keys.append[key]
+            self.data[key] = [text, audio_features, label, key]
             
     #Obsolete
     def pair_audio_text_and_prepare_data(self):
@@ -158,4 +162,5 @@ class Dataloader:
     
     def __getitem__(self,idx):
         
-        return self.data[idx]
+        key = self.indexed_keys[idx]
+        return self.data[key]
